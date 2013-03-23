@@ -95,6 +95,19 @@ translate([-26.06,33.67,10]) rotate(a=[0,0,-30]) cube(size = [12,9,30], center =
 
 
 if(motor_side)
-	motor_mount() ;
+	difference() {
+		motor_mount() ;
+		translate([47,-17,-0])
+			mirror([1,0,0])
+			linear_extrude(height=mount_thickness/5, center=true)
+			scale(0.4)
+			import("../dxf/stratum0-lowres.dxf");
+	}
 else
-	mount_cover() ;
+	difference() {
+		mount_cover() ;
+		translate([27,-17,cover_thickness])
+			linear_extrude(height=mount_thickness/5, center=true)
+			scale(0.4)
+			import("../dxf/stratum0-lowres.dxf");
+	}
